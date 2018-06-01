@@ -26,7 +26,7 @@ We also include Normalize.css (v3.0.3) which makes browsers render all elements 
 Each standalone piece of the template will be broken into their own component. This creates modularization within the template system.  Each component then can be switched between templates without conflicts or a heavy setup process.
 
 * Template
-    skeleton.pug - (HTML5 doctype page markup)
+    * skeleton.pug - (HTML5 doctype page markup)
 
     * Module
         * form - (Component type used as name)
