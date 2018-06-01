@@ -3,7 +3,7 @@
 
 ### Dependencies
 * Bootstrap [v3.3.7] (Grid, Responsive Utilities)
-* Normalize.css [v8.0.0]
+* Normalize.css [v3.0.3]
 * jQuery [v3.2.1]
 * JW Player [v8.3.3]
 
@@ -14,12 +14,27 @@ It is best to utilize preprocessors to avoid the need to copy and paste. This wo
 
 We are only utilizing pieces of Bootstrap’s framework. The pieces that we use are the Grid and Responsive Utilities (v3.3.7) as our front-end responsive framework. Referencing Bootstrap’s documentation below is highly recommended for these pieces.
 
-We also include Normalize.css (v8.0.0) which makes browsers render all elements more consistently and in line with modern standards. It precisely targets only the style attributes that need to be normalized.
+We also include Normalize.css (v3.0.3) which makes browsers render all elements more consistently and in line with modern standards. It precisely targets only the style attributes that need to be normalized.
 
 - Block Element Modifier (BEM): http://getbem.com/naming/
 - Grid Documentation: https://getbootstrap.com/docs/3.3/css/#grid
 - Normalize.css Documentation: http://nicolasgallagher.com/about-normalize-css/
 
+## Modularizing
+(This will not need to be done by your team but understanding the setup will be helpful for development)
+Each standalone piece of the template will be broken into their own component. This creates modularization within the template system.  Each component then can be switched between templates without conflicts or a heavy setup process.
+
+* Template
+    skeleton.pug - (HTML5 doctype page markup)
+    
+    * Module
+        * form - (Component type used as name)
+	        * CSS - (Shared JS among the same component type)
+	        * JS - (Shared JS among the same component type)
+	        * 1 - (Unique version number used as name, there will be more than one verison)
+		        * skeleton.pug - (The HTML markup of the component)
+		        * CSS - (Cascading Style Sheet dependencies for this component's version)
+		        * JS - (Javascript dependencies for this component's version)
 
 
 # JS
