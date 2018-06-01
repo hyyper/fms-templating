@@ -30,34 +30,34 @@ We also include Normalize.css (v8.0.0) which makes browsers render all elements 
     * Constants written in UPPERCASE.
 
 # CSS
-    * CSS Name Conventions
-        * Follow Block Element Modifier methodology.
-        * Use all-lowercase for elements and attributes.
-        * Don't leave trailing spaces at the end of a line.
+* CSS Name Conventions
+    * Follow Block Element Modifier methodology.
+    * Use all-lowercase for elements and attributes.
+    * Don't leave trailing spaces at the end of a line.
 
 
 # Image
-    * Compression
-        * File Types
-            * PNG   – This will give a higher quality image but a larger file size.
-            * JPEG – Quality is adjustable.
-            * GIF    – Only uses 256 colors.
-	    * SrcSet
-            * Use srcset attribute where needed.
+* Compression
+    * File Types
+        * PNG   – This will give a higher quality image but a larger file size.
+        * JPEG – Quality is adjustable.
+        * GIF    – Only uses 256 colors.
+    * SrcSet
+        * Use srcset attribute where needed.
 
 
-    * Name Conventions
-        * The file name should describe the image in natural speaking language.
-        * Do not include stop words.
-        * Hyphens to separate words.
-        * Only use lowercase.
-        * Do not use symbols or punctuation in file names.
-        * Only use periods for extensions.
+* Name Conventions
+    * The file name should describe the image in natural speaking language.
+    * Do not include stop words.
+    * Hyphens to separate words.
+    * Only use lowercase.
+    * Do not use symbols or punctuation in file names.
+    * Only use periods for extensions.
 
 
 # Font
-    * It is recommended to use Google Fonts but not restricted to this. https://fonts.google.com/
+* It is recommended to use Google Fonts but not restricted to this. https://fonts.google.com/
 
 
 # Video
-    * We use Embedded JW Player. https://developer.jwplayer.com/
+* We use Embedded JW Player. https://developer.jwplayer.com/
