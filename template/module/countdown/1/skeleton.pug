@@ -1,0 +1,15 @@
+<!-- Module Dependencies -->
+- if(false) {
+  block append js
+    include ../js/countdown.js
+
+  block append css
+    include ../css/countdown.css
+- }
+
+
+.text-center.countdown
+  .row
+    .col-xs-12.text #{countDownMessage}
+  .row
+    #time.col-xs-12.time #{countDownTime}

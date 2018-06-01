@@ -1,0 +1,73 @@
+/**
+* Form
+*/
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: transparent !important;
+    background-image: inherit !important;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    background: url(https://d1p10q174zjo77.cloudfront.net/template/order/img/up-down-arrows.jpg) 98% no-repeat;
+    border-radius: 0
+}
+
+.payment-form {
+    border: 1px solid #000;
+    padding: 10px 20px 0;
+    background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(red 0, #b30000 100%) #c72929; /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(red 0, #b30000 100%) #c72929; /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(red 0, #b30000 100%) #c72929; /* For Firefox 3.6 to 15 */
+    background: linear-gradient(red 0, #b30000 100%) #c72929; /* Standard syntax */
+}
+
+.payment-form__field--full-width {
+    width: 100%
+}
+
+.payment-form__h2 {
+    color: #fff;
+    font-size: 16px;
+    margin: 0;
+    padding: 0
+}
+
+.payment-form__field {
+    border: 0 solid #f66;
+    border-radius: 3px;
+    background-color: #fff
+}
+
+.payment-form__field--no-icon {
+    padding: 7px
+}
+
+.payment-form__field--right-icon {
+    padding: 7px 18px 7px 7px
+}
+
+.payment-form__field--invalid {
+    border: 3px solid red
+}
+
+.payment-form__label {
+    font-size: 10px;
+    color: #fff;
+    letter-spacing: 1px;
+    display: block;
+    padding-top: 14px;
+    padding-bottom: 2px
+}
+
+.payment-form__label--light {
+    opacity: .5
+}
+
+.payment-form__label--dark {
+    opacity: 1
+}

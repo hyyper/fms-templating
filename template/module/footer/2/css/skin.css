@@ -1,0 +1,12 @@
+/* Copyright Footer */
+.copyright-footer {
+    background: transparent;
+    width: 100%;
+}
+.copyright-footer__text {
+    color: #a7a7a7;
+    text-align: center;
+    font-size: 13px;
+    font-family: Open Sans;
+    font-weight: 200;
+}

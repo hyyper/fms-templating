@@ -1,0 +1,42 @@
+.payment-form__field--credit-card-icon {
+    background: url(https://d1p10q174zjo77.cloudfront.net/template/order/img/credit-card-icons.png) right 35px no-repeat transparent;
+    padding: 7px 57px 7px 7px;
+    right: 15px;
+}
+
+.payment-form__field--credit-card-icon {
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+.payment-form__field--unknown-credit-card {
+    background-position: right -140px
+}
+
+.payment-form__field--discover-credit-card {
+    background-position: right 0
+}
+
+.payment-form__field--mastercard-credit-card {
+    background-position: right -35px
+}
+
+.payment-form__field--visa-credit-card {
+    background-position: right -70px
+}
+
+.payment-form__field--amex-credit-card {
+    background-position: right -105px
+}
+
+.payment-form__lock {
+    background: url('https://thesocialmanfreechapter.com/1/images/lock.png') no-repeat center left;
+    padding-left: 1.5em;
+    color: #919191;
+    font-size: 0.7777777777777778em;
+    display: inline-block;
+    background-size: 1.071428571428571em 1.285714285714286em;
+    margin-bottom: .8em;
+}

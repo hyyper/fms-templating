@@ -1,0 +1,58 @@
+extends skeleton
+
+block css
+  include css/normalize.css.css
+  include css/grid.css
+  include css/order.css
+
+
+block body
+  <!-- Countdown -->
+  include module/countdown/1/skeleton
+
+  <!-- Leaving Popup | Contact Us | Privacy Policy -->
+  include module/popup
+
+  .container.padding-top-80
+    .row
+      .col-md-12
+        div
+          <!-- Header Image -->
+          img.header-image(src=headerSrc, alt=headerAlt)
+
+
+        .col-sm-5.col-sm-push-7.col-md-4.col-md-push-7.pull-up-60
+
+          <!-- Form -->
+          include module/form/1/skeleton
+
+          <!-- Security Certificates -->
+          include module/certificate/1/skeleton
+
+          <!-- Terms & Conditions -->
+          include module/terms-conditions
+
+          <!-- Money Back Guarantee -->
+          include module/guarantee/2/skeleton
+
+        .col-sm-7.col-sm-pull-5.col-md-7.col-md-pull-4
+
+          <!-- What You Get -->
+          include module/what-you-get
+  hr
+
+  <!-- Review -->
+  - if(review) {
+    include module/review
+  - }
+  
+  
+  <!-- Footer -->
+  include module/footer/1/skeleton
+
+  <!-- JS Library Dependency -->
+  script(src='https://code.jquery.com/jquery-3.2.1.min.js', integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', crossorigin='anonymous')
+
+
+  <!-- Script Here -->
+  script!=script
