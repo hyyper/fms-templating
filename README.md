@@ -21,12 +21,13 @@ We also include Normalize.css (v3.0.3) which makes browsers render all elements 
 - Normalize.css Documentation: http://nicolasgallagher.com/about-normalize-css/
 
 ## Modularizing
-(This will not need to be done by your team but understanding the setup will be helpful for development)
+**(This ('Modularizing') will not need to be done by your team but understanding the setup will be helpful for development)**
+
 Each standalone piece of the template will be broken into their own component. This creates modularization within the template system.  Each component then can be switched between templates without conflicts or a heavy setup process.
 
 * Template
     skeleton.pug - (HTML5 doctype page markup)
-    
+
     * Module
         * form - (Component type used as name)
 	        * CSS - (Shared JS among the same component type)
