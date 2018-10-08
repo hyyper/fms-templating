@@ -40,6 +40,9 @@ Each standalone piece of the template will be broken into their own component. T
 
 # JS
 
+* Transpiling
+   * Utilize Babel for Transpiling
+
 * Name Conventions
     * camelCase for identifier names (variables and functions).
     * Global variables written in UPPERCASE.
