@@ -46,7 +46,8 @@ Each standalone piece of the template will be broken into their own component. T
     * After any file change GULP runs build tasks and outputs into a `dist` directory.
 * Automate build tasks, whats included
     * Noramlize, Grid, and other SCSS files in the `scss` directory will be:
-        * Concatenated into a single file called style.css (call this in your markup)
+        * Compiles SCSS into CSS
+        * Concatenates into a single file called style.css (call this in your markup)
         * CSS output will be Minified
 
 * There are thousands of other plug-ins to help you automate the build process. https://gulpjs.com/
