@@ -63,3 +63,4 @@ dist/
 doc/
 jsdocs/
 spec/
+package-lock.json

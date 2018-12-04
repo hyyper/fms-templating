@@ -10,9 +10,9 @@
 
 ### Summary
 For selector naming we follow the Block Element Modifier (BEM) methodology.
-It is best to utilize preprocessors to avoid the need to copy and paste. This would be part of the build process.
+It is best to utilize preprocessors to avoid the need to copy and paste. This is apart of the build process (SASS).
 
-We are only utilizing pieces of Bootstrap’s framework. The pieces that we use are the Grid and Responsive Utilities (v3.3.7) as our front-end responsive framework. Referencing Bootstrap’s documentation below is highly recommended for these pieces.
+We are only utilizing pieces of Bootstrap’s framework. The pieces that we use are the Grid and Responsive Utilities of (v3.3.7) as our front-end responsive framework. Referencing Bootstrap’s documentation below is highly recommended for these pieces.
 
 We also include Normalize.css (v3.0.3) which makes browsers render all elements more consistently and in line with modern standards. It precisely targets only the style attributes that need to be normalized.
 
@@ -39,6 +39,14 @@ Each standalone piece of the template will be broken into their own component. T
 
 # GULP
 
+Development Packages
+    * gulp-sass: https://www.npmjs.com/package/gulp-sass
+    * gulp-concat: https://www.npmjs.com/package/gulp-concat
+    * gulp-uglifycss: https://www.npmjs.com/package/gulp-uglifycss
+    * gulp-babel: https://www.npmjs.com/package/gulp-babel
+    * gulp-livereload: https://www.npmjs.com/package/gulp-livereload
+
+
 * Run in Terminal `npm install`
 * Run in Terminal `gulp watch`
 
@@ -49,6 +57,7 @@ Each standalone piece of the template will be broken into their own component. T
         * Compiles SCSS into CSS
         * Concatenates into a single file called style.css (call this in your markup)
         * CSS output will be Minified
+        * Auto Reload client auto rebuilds
 
 * There are thousands of other plug-ins to help you automate the build process. https://gulpjs.com/
 
@@ -64,17 +73,18 @@ Each standalone piece of the template will be broken into their own component. T
 
 # CSS
 * CSS Name Conventions
-    * Follow Block Element Modifier methodology.
+    * Follow Block Element Modifier methodology. (http://getbem.com/naming/)
     * Use all-lowercase for elements and attributes.
     * Don't leave trailing spaces at the end of a line.
+    * DO NOT use element tag selectors. For example (h1-h6, p, form, span), use class names as a selector.
 
 
 # Image
 * Compression
     * File Types
-        * PNG   – This will give a higher quality image but a larger file size.
+        * PNG  – This will give a higher quality image but a larger file size.
         * JPEG – Quality is adjustable.
-        * GIF    – Only uses 256 colors.
+        * GIF  – Only uses 256 colors.
     * SrcSet
         * Use srcset attribute where needed.
 

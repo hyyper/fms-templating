@@ -1,12 +1,16 @@
 {
   "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
     "gulp": "latest",
-    "gulp-util": "latest",
-    "gulp-sass": "latest",
+    "gulp-babel": "^8.0.0",
     "gulp-coffee": "latest",
-    "gulp-uglify": "latest",
     "gulp-concat": "latest",
     "gulp-connect": "latest",
-    "gulp-uglifycss": "^1.1.0"
+    "gulp-livereload": "^4.0.1",
+    "gulp-sass": "latest",
+    "gulp-uglify": "latest",
+    "gulp-uglifycss": "^1.1.0",
+    "gulp-util": "latest"
   }
 }
