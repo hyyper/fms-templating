@@ -39,7 +39,7 @@ Each standalone piece of the template will be broken into their own component. T
 
 # GULP
 
-Development Packages
+* Development Packages
     * gulp-sass: https://www.npmjs.com/package/gulp-sass
     * gulp-concat: https://www.npmjs.com/package/gulp-concat
     * gulp-uglifycss: https://www.npmjs.com/package/gulp-uglifycss
