@@ -12,7 +12,6 @@ function handleError(error) {
 }
 
 GULP.task('build-css', function () {
-
     GULP.src('src/scss/*')
         .pipe(SASS({style: 'expanded'}))
         .pipe(CONCAT('style.css'))
@@ -21,7 +20,6 @@ GULP.task('build-css', function () {
         }))
         .on('error', handleError)
         .pipe(GULP.dest('dist/css'))
-
 })
 
 GULP.task('build-js', function () {
@@ -34,7 +32,6 @@ GULP.task('build-js', function () {
 })
 
 GULP.task('build-img', function () {
-
     GULP.src('src/img/*')
         .on('error', handleError)
         .pipe(GULP.dest('dist/img'))
@@ -42,7 +39,6 @@ GULP.task('build-img', function () {
 })
 
 GULP.task('build-html', function () {
-
     GULP.src('src/index.html')
         .on('error', handleError)
         .pipe(GULP.dest('dist'))
@@ -52,6 +48,5 @@ GULP.task('build-html', function () {
 
 GULP.task('watch', function () {
     LIVERELOAD.listen()
-    GULP.watch('src/**/*', ['build-html','build-img','build-css'])
-
+    GULP.watch('src/**/*', ['build-html','build-img','build-css', 'build-js'])
 })
