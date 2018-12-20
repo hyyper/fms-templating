@@ -1,0 +1,23 @@
+body{
+	min-width: $base-min-width;
+	font-family: $base-font;
+	font-weight: $font-weight-base;
+	font-size: $font-size-base;
+	line-height: $line-height-base;
+	background-color: $body-bg;
+	color: $main-text-color;
+}
+
+
+.h1, .h2, .h3, .h4, .h5, .h6{
+	margin-top: 0;
+}
+
+p{
+	margin-top: 0;
+}
+
+.wrapper {
+	width: 100%;
+	overflow: hidden;
+}

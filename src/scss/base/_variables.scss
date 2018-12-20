@@ -1,0 +1,46 @@
+$black:                             #000 !default;
+$white:                             #fff !default;
+$gray:                              #999 !default;
+$default-btn-bg:                    #fff !default;
+$orange:                            #ed6b1d !default;
+$light-green:                       #d5f464 !default;
+$green:                             #5da743 !default;
+$dark-green:                        #383a44 !default;
+
+$main-text-color:                   $black;
+$primary-color:                     $orange;
+$body-bg:                           $white;
+
+//== Typography
+
+$base-font-sans-serif:           'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
+$base-font-serif:                'Times New Roman', 'Times', 'Baskerville', 'Georgia', serif;
+$base-font:                      $base-font-sans-serif;
+
+$font-size-base:                 16px !default;
+$line-height-base:               1.44 !default;
+$font-weight-base:               normal !default;
+
+$font-size-h1:                   40px !default;
+$font-size-h2:                   35px !default;
+$font-size-h3:                   30px !default;
+$font-size-h4:                   25px !default;
+$font-size-h5:                   20px !default;
+$font-size-h6:                   16px !default;
+
+$heading-line-height-base:       1.2 !default;
+
+$base-min-width:                 320px !default;
+$max-width-center-container:     1200px !default;
+
+$border-radius-base:             0 !default;
+
+//== Buttons
+$btn-font-weight:                normal !default;
+
+$btn-default-color:              #333 !default;
+$btn-default-bg:                 #fff !default;
+$btn-default-border:             #ccc !default;
+
+// Allows for customizing button radius independently from global border radius
+$btn-border-radius-base:         $border-radius-base !default;
