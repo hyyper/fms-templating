@@ -5,7 +5,7 @@
     "autoprefixer": "^9.4.2",
     "browser-sync": "^2.26.3",
     "del": "^3.0.0",
-    "gulp": "latest",
+    "gulp": "4.0",
     "gulp-babel": "^8.0.0",
     "gulp-cache": "^1.0.2",
     "gulp-coffee": "latest",
