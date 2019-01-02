@@ -14,84 +14,92 @@ const CLEAN        = require('del')
 const IMAGEMIN     = require('gulp-imagemin')
 const WAIT         = require('gulp-wait')
 const CACHE        = require('gulp-cache')
+const RENAME       = require('gulp-rename')
 
 function handleError(error) {
-	console.log(error.toString())
-	this.emit('end')
+    console.log(error.toString())
+    this.emit('end')
 }
 
 const POSTCSS_PLUGINS = [
-	AUTOPREFIXER({ browsers: ['last 4 version', 'ie >= 10', 'Android 4'] })
+    AUTOPREFIXER({ browsers: ['last 4 version', 'ie >= 10', 'Android 4'] })
 ]
 
 //local server
 GULP.task('server', function() {
-	BROWSER_SYNC.init({
-		server: {
-			baseDir: './' + SETTINGS.dist.root,
-			port: 3010,
-			directory: true,
-			reloadOnRestart: true
-		}
-	})
+    BROWSER_SYNC.init({
+        server: {
+            baseDir: './' + SETTINGS.dist.root,
+            port: 3010,
+            directory: true,
+            reloadOnRestart: true
+        }
+    })
 })
 
 GULP.task('sass:dev', function() {
-	return GULP.src(SETTINGS.src.scss + '**/*.+(scss|sass)')
-		.pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
-		.pipe(WAIT(500))
-		.pipe(SOURCEMAPS.init())
-		.pipe(SASS({outputStyle: 'compressed'}))
-		.pipe(POSTCSS(POSTCSS_PLUGINS))
-		.pipe(SOURCEMAPS.write())
-		.pipe(CONCAT('style.css'))
-		.pipe(GULP.dest('./' + SETTINGS.dist.css))
-		.pipe(BROWSER_SYNC.reload({stream: true}))
+    return GULP.src(SETTINGS.src.scss + '**/*.+(scss|sass)')
+        .pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
+        .pipe(WAIT(500))
+        .pipe(SOURCEMAPS.init())
+        .pipe(SASS({outputStyle: 'compressed'}))
+        .pipe(POSTCSS(POSTCSS_PLUGINS))
+        .pipe(SOURCEMAPS.write())
+        .pipe(RENAME(function (path) {
+            path.dirname = path.dirname.split('/')[1] + '/' + 'css/'
+        }))
+        .pipe(GULP.dest('./' + SETTINGS.dist.css))
+        .pipe(BROWSER_SYNC.reload({stream: true}))
 })
 
 GULP.task('sass:dist', function() {
-	return GULP.src(SETTINGS.src.scss + '**/*.+(scss|sass)')
-		.pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
-		.pipe(SASS({outputStyle: 'compressed'}))
-		.pipe(POSTCSS(POSTCSS_PLUGINS))
-		.pipe(CONCAT('style.css'))
-		.pipe(GULP.dest('./' + SETTINGS.dist.css))
+    return GULP.src(SETTINGS.src.scss + '**/*.+(scss|sass)', {
+        base: '.'
+    })
+        .pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
+        .pipe(SASS({outputStyle: 'compressed'}))
+        .pipe(POSTCSS(POSTCSS_PLUGINS))
+        .pipe(RENAME(function (path) {
+            path.dirname = path.dirname.split('/')[1] + '/' + 'css/'
+        }))
+        .pipe(GULP.dest('./dist'))
 })
 
 GULP.task('build-js', function() {
-	GULP.src('src/js/*')
-		.pipe(BABEL({
-			plugins: ['@babel/transform-runtime']
-		}))
-		.on('error', handleError)
-		.pipe(GULP.dest('./' + SETTINGS.dist.js))
+    return GULP.src(SETTINGS.src.js + '**/*.js')
+        .pipe(BABEL({
+            plugins: ['@babel/transform-runtime']
+        }))
+        .on('error', handleError)
+        .pipe(GULP.dest('./' + SETTINGS.dist.root))
 })
 
 GULP.task('img', function() {
-	return GULP.src(SETTINGS.src.img + '**/*.+(png|jpg|gif|svg)')
-		.pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
-		.pipe(WAIT(500))
-		.pipe(CACHE(IMAGEMIN()))
-		.pipe(GULP.dest('./' + SETTINGS.dist.img))
+    return GULP.src(SETTINGS.src.img + '**/*.+(png|jpg|gif|svg)')
+        .pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
+        .pipe(WAIT(500))
+        .pipe(CACHE(IMAGEMIN()))
+        .pipe(GULP.dest('./' + SETTINGS.dist.root))
 
 })
 
 GULP.task('fonts', function() {
-	return GULP.src(SETTINGS.src.fonts + '**/*.*')
-		.pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
-		.pipe(GULP.dest('./' + SETTINGS.dist.fonts))
+    return GULP.src(SETTINGS.src.fonts + '**/*.*')
+        .pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
+        .pipe(GULP.dest('./' + SETTINGS.dist.root))
 
 })
 
 GULP.task('html', function() {
-	return GULP.src(SETTINGS.src.root + '**/*.html')
-		.pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
-		.pipe(GULP.dest('./' + SETTINGS.dist.root))
+    return GULP.src(SETTINGS.src.root + '**/*.html')
+        .pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
+        .pipe(GULP.dest('./' + SETTINGS.dist.root))
 
 })
 
-GULP.task('clean', function() {
-	return CLEAN.sync('./' + SETTINGS.dist.root)
+GULP.task('clean', done => {
+    CLEAN.sync('./' + SETTINGS.dist.root)
+    return done()
 })
 
 
@@ -103,6 +111,6 @@ GULP.task('watch', GULP.parallel(
     js   = () => { GULP.watch('./' + SETTINGS.src.js + '**/*.*', GULP.series('build-js')).on('change', BROWSER_SYNC.reload) },
     font = () => { GULP.watch('./' + SETTINGS.src.fonts + '**/*.*', GULP.series('fonts')).on('change', BROWSER_SYNC.reload) },
     img  = () => { GULP.watch('./' + SETTINGS.src.img + '**/*.+(png|jpg|gif|svg)', GULP.series('img')) }
-    ))
+))
 
 GULP.task('dev', GULP.series('dist', 'watch', 'server'))
