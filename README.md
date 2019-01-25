@@ -101,6 +101,18 @@ Each standalone piece of the template will be broken into their own component. T
 # Font
 * It is recommended to use Google Fonts but not restricted to this. https://fonts.google.com/
 
+Dynamically load Google Fonts - https://github.com/typekit/webfontloader
+    ```
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
+	<script>
+        WebFont.load({
+            google: {
+                families: ['Open Sans:300,300i,400,400i,600,600i,700,700i']
+            }
+        });
+	</script>
+	```
+
 
 # Video
 * We use Embedded JW Player. https://developer.jwplayer.com/
