@@ -72,7 +72,7 @@ Each standalone piece of the template will be broken into their own component. T
 * Name Conventions
     * camelCase for identifier names (variables and functions).
     * Global variables written in UPPERCASE.
-    * Constants written in UPPERCASE.
+    * Constants written in UPPERCASE with underscores for word delimiting.
 
 # CSS
 * CSS Name Conventions
