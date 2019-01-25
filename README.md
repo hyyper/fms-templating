@@ -45,6 +45,9 @@ Each standalone piece of the template will be broken into their own component. T
     * gulp-uglifycss: https://www.npmjs.com/package/gulp-uglifycss
     * gulp-babel: https://www.npmjs.com/package/gulp-babel
     * gulp-livereload: https://www.npmjs.com/package/gulp-livereload
+    * gulp-browser-sync: https://browsersync.io/docs/gulp
+    * gulp-rename: https://www.npmjs.com/package/gulp-rename
+    * gulp-imagemin: https://www.npmjs.com/package/gulp-imagemin
 
 
 * Run in Terminal `npm install`
