@@ -35,28 +35,43 @@ function server(done) {
 }
 
 function sass_dev() {
-	return GULP.src(SETTINGS.src.scss + '**/*.+(scss|sass)')
+	return GULP.src([
+		SETTINGS.src.scss + '**/*.+(scss|sass)',
+		'!' + SETTINGS.src.scss + '**/_*.+(scss|sass)'
+		])
 	.pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
 	.pipe(WAIT(500))
 	.pipe(SOURCEMAPS.init())
-	.pipe(SASS())
+	.pipe(SASS({outputStyle: 'expanded'}))
 	.pipe(POSTCSS(POSTCSS_PLUGINS))
-	.pipe(SOURCEMAPS.write())
 	.pipe(CONCAT('style.css'))
+	.pipe(SOURCEMAPS.write('./'))
 	.pipe(GULP.dest('./' + SETTINGS.dist.css))
 	.pipe(BROWSER_SYNC.reload({stream: true}))
 }
 
 function sass_dist() {
-	return	GULP.src([
+	return GULP.src([
+		SETTINGS.src.scss + '**/*.+(scss|sass)',
+		'!' + SETTINGS.src.scss + '**/_*.+(scss|sass)'
+		])
+	.pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
+	.pipe(CONCAT('style.css'))
+	.pipe(SASS({outputStyle: 'compressed'}))
+	.pipe(POSTCSS(POSTCSS_PLUGINS))
+	.pipe(GULP.dest('./' + SETTINGS.dist.css))
+}
+
+function sass_production() {
+	return GULP.src([
 		SETTINGS.src.scss + '**/*.+(scss|sass)',
 		'!' + SETTINGS.src.scss + '**/_*/',
 		'!' + SETTINGS.src.scss + '**/_*/**/*',
 		])
 	.pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
-	.pipe(SASS())
-	.pipe(POSTCSS(POSTCSS_PLUGINS))
 	.pipe(CONCAT('style.css'))
+	.pipe(SASS({outputStyle: 'compressed'}))
+	.pipe(POSTCSS(POSTCSS_PLUGINS))
 	.pipe(GULP.dest('./' + SETTINGS.dist.css))
 }
 
@@ -106,10 +121,12 @@ function watchFiles() {
 	GULP.watch('./' + SETTINGS.src.img + '**/*.+(png|jpg|gif|svg)', GULP.series(img))
 }
 
+const production = GULP.series(clean, GULP.series(sass_production, html, img, build_js, fonts));
 const dist = GULP.series(clean, GULP.series(sass_dist, html, img, build_js, fonts));
 const watch = GULP.parallel(server, watchFiles);
 const dev = GULP.series(clean, GULP.series(sass_dev, build_js, html, img, fonts), watch);
 
+exports.production = production;
 exports.dist = dist;
 exports.watch = watch;
 exports.dev = dev;
