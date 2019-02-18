@@ -67,6 +67,7 @@ function sass_production() {
 		SETTINGS.src.scss + '**/*.+(scss|sass)',
 		'!' + SETTINGS.src.scss + '**/_*/',
 		'!' + SETTINGS.src.scss + '**/_*/**/*',
+		'!' + SETTINGS.src.scss + '**/_*.+(scss|sass)'
 		])
 	.pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
 	.pipe(CONCAT('style.css'))
