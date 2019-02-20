@@ -14,6 +14,9 @@ const CLEAN        = require('del')
 const IMAGEMIN     = require('gulp-imagemin')
 const WAIT         = require('gulp-wait')
 const CACHE        = require('gulp-cache')
+const posthtml = require('gulp-posthtml');
+const sugarSrcset = require('posthtml-sugar-srcset')
+const responsive = require('gulp-responsive');
 
 function handleError(error) {
 	console.log(SETTINGS)
@@ -32,6 +35,30 @@ function server(done) {
 		port: 3010
 	})
 	done();
+}
+
+function img(done) {
+	return GULP.src(SETTINGS.src.img + '**/*.+(png|jpg|gif|svg)')
+	.pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
+	.pipe(WAIT(500))
+	.pipe(responsive({
+		'*': [{
+			rename: { suffix: '' },
+		},{
+			width: 768,
+			rename: { suffix: '-768w' },
+		}, {
+			width: 992,
+			rename: { suffix: '-992w' },
+		}, {
+			width: 1200,
+			rename: { suffix: '-1200w' },
+		}],
+	}, {
+		withoutEnlargement: false,
+	}))
+	.pipe(CACHE(IMAGEMIN()))
+	.pipe(GULP.dest('./' + SETTINGS.dist.img))
 }
 
 function sass_dev() {
@@ -85,14 +112,6 @@ function build_js(done) {
 	.pipe(GULP.dest('./' + SETTINGS.dist.js))
 }
 
-function img(done) {
-	return GULP.src(SETTINGS.src.img + '**/*.+(png|jpg|gif|svg)')
-	.pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
-	.pipe(WAIT(500))
-	.pipe(CACHE(IMAGEMIN()))
-	.pipe(GULP.dest('./' + SETTINGS.dist.img))
-}
-
 function fonts() {
 	return GULP.src(SETTINGS.src.fonts + '**/*')
 	.pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
@@ -102,6 +121,9 @@ function fonts() {
 function html() {
 	return GULP.src(SETTINGS.src.root + '**/*.html')
 	.pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
+	.pipe(posthtml([
+		sugarSrcset()
+		]))
 	.pipe(GULP.dest('./' + SETTINGS.dist.root))
 }
 
