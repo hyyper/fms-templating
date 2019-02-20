@@ -37,6 +37,31 @@ function server(done) {
 	done();
 }
 
+function img_resize(done) {
+	return GULP.src(SETTINGS.src.img + '**/*.+(png|jpg|gif|svg)')
+	.pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
+	.pipe(WAIT(500))
+	.pipe(responsive({
+		'*': [{
+			rename: { suffix: '' },
+		},{
+			width: 768,
+			rename: { suffix: '-768w' },
+		}, {
+			width: 992,
+			rename: { suffix: '-992w' },
+		}, {
+			width: 1200,
+			rename: { suffix: '-1200w' },
+		}],
+	}, {
+		withoutEnlargement: false,
+		errorOnUnusedImage: false,
+		errorOnUnusedConfig: false,
+	}))
+	.pipe(GULP.dest('./' + SETTINGS.dist.img))
+}
+
 function img(done) {
 	return GULP.src(SETTINGS.src.img + '**/*.+(png|jpg|gif|svg)')
 	.pipe(PLUMBER({errorHandler: NOTIFY.onError('Error: <%= error.message %>')}))
@@ -56,6 +81,8 @@ function img(done) {
 		}],
 	}, {
 		withoutEnlargement: false,
+		errorOnUnusedImage: false,
+		errorOnUnusedConfig: false,
 	}))
 	.pipe(CACHE(IMAGEMIN()))
 	.pipe(GULP.dest('./' + SETTINGS.dist.img))
@@ -141,13 +168,13 @@ function watchFiles() {
 	GULP.watch('./' + SETTINGS.src.root + '**/*.html', GULP.series(html)).on('change', browserSyncReload)
 	GULP.watch('./' + SETTINGS.src.js + '**/*', GULP.series(build_js)).on('change', browserSyncReload)
 	GULP.watch('./' + SETTINGS.src.fonts + '**/*.*', GULP.series(fonts)).on('change', browserSyncReload)
-	GULP.watch('./' + SETTINGS.src.img + '**/*.+(png|jpg|gif|svg)', GULP.series(img))
+	GULP.watch('./' + SETTINGS.src.img + '**/*.+(png|jpg|gif|svg)', GULP.series(img_resize))
 }
 
 const production = GULP.series(clean, GULP.series(sass_production, html, img, build_js, fonts));
 const dist = GULP.series(clean, GULP.series(sass_dist, html, img, build_js, fonts));
 const watch = GULP.parallel(server, watchFiles);
-const dev = GULP.series(clean, GULP.series(sass_dev, build_js, html, img, fonts), watch);
+const dev = GULP.series(clean, GULP.series(sass_dev, build_js, html, img_resize, fonts), watch);
 
 exports.production = production;
 exports.dist = dist;
