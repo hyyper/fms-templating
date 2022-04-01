@@ -50,7 +50,10 @@ Each standalone piece of the template will be broken into their own component. T
 
 
 * Run in Terminal `npm install`
-* Run in Terminal `gulp watch`
+* Run in Terminal `gulp dev` for development
+* Run in Terminal `gulp build` for building distribution files
+
+
 
 * File Watcher is set on `src` directory
     * After any file change GULP runs build tasks and outputs into a `dist` directory.
