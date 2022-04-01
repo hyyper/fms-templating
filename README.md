@@ -5,7 +5,6 @@
 * Bootstrap [v3.3.7] (Grid, Responsive Utilities)
 * Normalize.css [v3.0.3]
 * jQuery [v3.2.1]
-* JW Player [v8.3.3]
 
 
 ### Summary
@@ -115,7 +114,3 @@ Dynamically load Google Fonts - https://github.com/typekit/webfontloader
         });
 	</script>
 	```
-
-
-# Video
-* We use Embedded JW Player. https://developer.jwplayer.com/
